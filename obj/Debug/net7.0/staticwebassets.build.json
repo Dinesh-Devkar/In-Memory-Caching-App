@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "cGw0S3NWwZWBagF/5zmc/BSg9FUPwmDRu96GW/KYX8c=",
+  "Source": "InMemoryCachingWebApi",
+  "BasePath": "_content/InMemoryCachingWebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
