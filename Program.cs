@@ -14,6 +14,10 @@ builder.Services.AddDbContext<StudentContext>(options=> options.UseSqlServer(bui
 
 builder.Services.AddMemoryCache();
 
+builder.Services.AddStackExchangeRedisCache(options=>{
+    options.Configuration="localhost:6379";
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

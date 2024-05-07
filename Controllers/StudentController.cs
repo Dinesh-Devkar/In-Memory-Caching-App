@@ -1,13 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using InMemoryCachingWebApi.Context;
 using InMemoryCachingWebApi.Dtos;
 using InMemoryCachingWebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
+using Newtonsoft.Json;
 
 namespace InMemoryCachingWebApi.Controllers
 {
@@ -17,11 +21,13 @@ namespace InMemoryCachingWebApi.Controllers
     {
         private readonly StudentContext _studentContext;
         private readonly IMemoryCache _cache;
+        private readonly IDistributedCache _distributedCache;
 
-        public StudentController(IMemoryCache cache,StudentContext studentContext)
+        public StudentController(IMemoryCache cache,StudentContext studentContext,IDistributedCache distributedCache)
         {
             _studentContext=studentContext;
             _cache=cache;
+            _distributedCache=distributedCache;
         }
 
         [HttpGet]
@@ -47,6 +53,34 @@ namespace InMemoryCachingWebApi.Controllers
                 _cache.Set(studentsKey,students,cacheExpiryOptions);
 
             }
+            return Ok(students);
+        }
+
+        [HttpGet("redis")]
+        public async  Task<IActionResult> GetAllStudentsFromRedis()
+        {
+            string cacheKey="studentsList";
+            string serializedStudentsList;
+            var students=new List<Student>();
+
+            var redisCustomerList= await _distributedCache.GetAsync(cacheKey);
+            if (redisCustomerList!=null)
+            {
+                serializedStudentsList=Encoding.UTF8.GetString(redisCustomerList);
+                students= JsonConvert.DeserializeObject<List<Student>>(serializedStudentsList);
+            }
+            else
+            {
+                students= await _studentContext.Students.ToListAsync();
+                serializedStudentsList=JsonConvert.SerializeObject(students);
+                redisCustomerList=Encoding.UTF8.GetBytes(serializedStudentsList);
+
+                var cacheExpiryOptions= new DistributedCacheEntryOptions().SetAbsoluteExpiration(DateTime.Now.AddMinutes(10))
+                .SetSlidingExpiration(TimeSpan.FromMinutes(2));
+
+                await _distributedCache.SetAsync(cacheKey,redisCustomerList,cacheExpiryOptions);
+            }
+
             return Ok(students);
         }
  

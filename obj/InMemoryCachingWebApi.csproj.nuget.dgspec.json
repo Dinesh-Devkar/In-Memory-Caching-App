@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DineshProjects\\Practice\\GitHubRepo\\InMemoryCachingApp\\InMemoryCachingWebApi\\InMemoryCachingWebApi.csproj": {}
+    "d:\\DineshProjects\\Practice\\GitHubRepo\\InMemoryCachingApp\\InMemoryCachingWebApi\\InMemoryCachingWebApi.csproj": {}
   },
   "projects": {
-    "D:\\DineshProjects\\Practice\\GitHubRepo\\InMemoryCachingApp\\InMemoryCachingWebApi\\InMemoryCachingWebApi.csproj": {
+    "d:\\DineshProjects\\Practice\\GitHubRepo\\InMemoryCachingApp\\InMemoryCachingWebApi\\InMemoryCachingWebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DineshProjects\\Practice\\GitHubRepo\\InMemoryCachingApp\\InMemoryCachingWebApi\\InMemoryCachingWebApi.csproj",
+        "projectUniqueName": "d:\\DineshProjects\\Practice\\GitHubRepo\\InMemoryCachingApp\\InMemoryCachingWebApi\\InMemoryCachingWebApi.csproj",
         "projectName": "InMemoryCachingWebApi",
-        "projectPath": "D:\\DineshProjects\\Practice\\GitHubRepo\\InMemoryCachingApp\\InMemoryCachingWebApi\\InMemoryCachingWebApi.csproj",
+        "projectPath": "d:\\DineshProjects\\Practice\\GitHubRepo\\InMemoryCachingApp\\InMemoryCachingWebApi\\InMemoryCachingWebApi.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\DineshProjects\\Practice\\GitHubRepo\\InMemoryCachingApp\\InMemoryCachingWebApi\\obj\\",
+        "outputPath": "d:\\DineshProjects\\Practice\\GitHubRepo\\InMemoryCachingApp\\InMemoryCachingWebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -66,6 +66,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
